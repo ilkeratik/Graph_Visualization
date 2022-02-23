@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import networkx as nx
+from pyvis.network import Network
 import numpy as np
 import pandas as pd
 
@@ -88,7 +89,14 @@ class GraphNet:
         nx.draw(G,pos, with_labels = True)
 
         print(nx.info(G))
+
+        ## Matplotlib visualization
         plt.show()
+        
+        ## Interactive HTML visualization
+        nt = Network(height='750px', width='100%', bgcolor='#222222', font_color='white')
+        nt.from_nx(G)
+        nt.show('nx.html')
 
 
 if __name__ == "__main__":

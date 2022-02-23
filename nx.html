@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 750px;
+            background-color: #222222;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"font": {"color": "white"}, "id": "Istanbul", "label": "Istanbul", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Izmit", "label": "Izmit", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Bursa", "label": "Bursa", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Adapazari", "label": "Adapazari", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Balikesir", "label": "Balikesir", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Kutahya", "label": "Kutahya", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Eskisehir", "label": "Eskisehir", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Bilecik", "label": "Bilecik", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Bolu", "label": "Bolu", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Ankara", "label": "Ankara", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Kastamonu", "label": "Kastamonu", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Zonguldak", "label": "Zonguldak", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Karabuk", "label": "Karabuk", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Kirikkale", "label": "Kirikkale", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Afyon", "label": "Afyon", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Konya", "label": "Konya", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Aksaray", "label": "Aksaray", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Cankiri", "label": "Cankiri", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Corum", "label": "Corum", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Yozgat", "label": "Yozgat", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Isparta", "label": "Isparta", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Kirsehir", "label": "Kirsehir", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Nevsehir", "label": "Nevsehir", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Kayseri", "label": "Kayseri", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Antalya", "label": "Antalya", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Usak", "label": "Usak", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Denizli", "label": "Denizli", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Mugla", "label": "Mugla", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Izmir", "label": "Izmir", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Aydin", "label": "Aydin", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Canakkale", "label": "Canakkale", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Sakarya", "label": "Sakarya", "shape": "dot", "size": 10}]);
+        edges = new vis.DataSet([{"from": "Istanbul", "to": "Izmit", "weight": 103}, {"from": "Istanbul", "to": "Bursa", "weight": 153}, {"from": "Izmit", "to": "Adapazari", "weight": 53}, {"from": "Bursa", "to": "Balikesir", "weight": 147}, {"from": "Bursa", "to": "Kutahya", "weight": 178}, {"from": "Bursa", "to": "Eskisehir", "weight": 152}, {"from": "Bursa", "to": "Bilecik", "weight": 96}, {"from": "Adapazari", "to": "Bolu", "weight": 125}, {"from": "Bolu", "to": "Ankara", "weight": 187}, {"from": "Bolu", "to": "Kastamonu", "weight": 252}, {"from": "Bolu", "to": "Zonguldak", "weight": 158}, {"from": "Bolu", "to": "Karabuk", "weight": 155}, {"from": "Ankara", "to": "Kirikkale", "weight": 73}, {"from": "Ankara", "to": "Afyon", "weight": 259}, {"from": "Ankara", "to": "Konya", "weight": 271}, {"from": "Ankara", "to": "Aksaray", "weight": 237}, {"from": "Ankara", "to": "Eskisehir", "weight": 235}, {"from": "Ankara", "to": "Cankiri", "weight": 132}, {"from": "Kastamonu", "to": "Cankiri", "weight": 107}, {"from": "Kastamonu", "to": "Corum", "weight": 200}, {"from": "Kastamonu", "to": "Karabuk", "weight": 107}, {"from": "Zonguldak", "to": "Karabuk", "weight": 118}, {"from": "Kirikkale", "to": "Yozgat", "weight": 140}, {"from": "Kirikkale", "to": "Cankiri", "weight": 107}, {"from": "Kirikkale", "to": "Corum", "weight": 165}, {"from": "Afyon", "to": "Eskisehir", "weight": 132}, {"from": "Afyon", "to": "Isparta", "weight": 165}, {"from": "Konya", "to": "Isparta", "weight": 241}, {"from": "Konya", "to": "Aksaray", "weight": 150}, {"from": "Aksaray", "to": "Kirsehir", "weight": 96}, {"from": "Aksaray", "to": "Nevsehir", "weight": 73}, {"from": "Yozgat", "to": "Kirsehir", "weight": 114}, {"from": "Yozgat", "to": "Kayseri", "weight": 172}, {"from": "Yozgat", "to": "Corum", "weight": 108}, {"from": "Cankiri", "to": "Corum", "weight": 156}, {"from": "Kirsehir", "to": "Kayseri", "weight": 135}, {"from": "Kirsehir", "to": "Nevsehir", "weight": 93}, {"from": "Kayseri", "to": "Nevsehir", "weight": 80}, {"from": "Isparta", "to": "Antalya", "weight": 126}, {"from": "Isparta", "to": "Usak", "weight": 172}, {"from": "Isparta", "to": "Denizli", "weight": 169}, {"from": "Isparta", "to": "Mugla", "weight": 271}, {"from": "Antalya", "to": "Mugla", "weight": 314}, {"from": "Antalya", "to": "Denizli", "weight": 224}, {"from": "Usak", "to": "Balikesir", "weight": 226}, {"from": "Usak", "to": "Izmir", "weight": 222}, {"from": "Usak", "to": "Denizli", "weight": 146}, {"from": "Denizli", "to": "Aydin", "weight": 125}, {"from": "Denizli", "to": "Mugla", "weight": 146}, {"from": "Balikesir", "to": "Canakkale", "weight": 193}, {"from": "Balikesir", "to": "Izmir", "weight": 192}, {"from": "Balikesir", "to": "Kutahya", "weight": 225}, {"from": "Kutahya", "to": "Eskisehir", "weight": 78}, {"from": "Bilecik", "to": "Sakarya", "weight": 105}, {"from": "Canakkale", "to": "Izmir", "weight": 318}, {"from": "Izmir", "to": "Aydin", "weight": 112}, {"from": "Aydin", "to": "Mugla", "weight": 98}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
