@@ -13,7 +13,6 @@ class AStar:
         return self.DictEdges[v]
 
     def h(self, n):
-        
         H = {}
         for node in self.Graph.nodes:
             H[node.name] = 1
@@ -21,6 +20,14 @@ class AStar:
         return H[n]
 
     def find_best_route(self, start, stop):
+        '''
+            start: Start node
+            stop: Final-End-Stop node
+            both parameters should be in string format
+
+            returns shortest path found between nodes and 'Path not found' if there is no path.
+        '''
+
         # In this open_lst is a list of nodes which have been visited, but who's 
         # neighbours haven't all been always inspected, It starts off with the start 
         #node
