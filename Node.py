@@ -1,4 +1,4 @@
-import numpy
+
 class Node:
 
     def __init__(self, n):
@@ -9,7 +9,7 @@ class Node:
         self.edges.append([node,distance])
 
     def edges_as_list(self):
-        return [[edge[0].name, edge[1]] for edge in self.edges]
+        return [(edge[0].name, edge[1]) for edge in self.edges]
 
     def edges_as_list_no_weight(self):
         return [edge[0].name for edge in self.edges]
