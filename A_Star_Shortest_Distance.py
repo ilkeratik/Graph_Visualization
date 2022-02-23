@@ -25,7 +25,7 @@ class AStar:
             stop: Final-End-Stop node
             both parameters should be in string format
 
-            returns shortest path found between nodes and 'Path not found' if there is no path.
+            returns the shortest path found between nodes and None if there is no path.
         '''
 
         # In this open_lst is a list of nodes which have been visited, but who's 
@@ -99,7 +99,7 @@ class AStar:
             open_lst.remove(n)
             closed_lst.add(n)
 
-        print('Path does not exist!')
+        print('Path does not exist')
         return None
 
 As = AStar()
