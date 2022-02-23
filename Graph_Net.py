@@ -96,7 +96,7 @@ class GraphNet:
         ## Interactive HTML visualization
         nt = Network(height='750px', width='100%', bgcolor='#222222', font_color='white')
         nt.from_nx(G)
-        nt.show('nx.html')
+        nt.show('index.html')
 
 
 if __name__ == "__main__":
