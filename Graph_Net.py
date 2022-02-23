@@ -15,7 +15,10 @@ class GraphNet:
     def add_node(self,node):
         self.nodes.append(node)
 
-    def add_nodes_from_csv_file(self, path, is_bidirectional=False):
+    def add_edges_from_csv_file(self, path, is_bidirectional=False):
+        '''
+            Adds edges from given path, creates nodes first(once)(for all unique strings) then adds its neighbors
+        '''
         cities_w_name = np.zeros((0,2))
         # print(cities_w_name)
         cities_w_name = np.concatenate([cities_w_name,[[i.name, i] for i in self.nodes]])
@@ -91,7 +94,7 @@ class GraphNet:
 if __name__ == "__main__":
     gg = GraphNet()
 
-    gg.add_nodes_from_csv_file('distances.csv')
+    gg.add_edges_from_csv_file('distances.csv')
     print(gg.get_edges_of_node('Kirikkale'))
     gg.visualize()
     

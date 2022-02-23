@@ -6,7 +6,7 @@ class AStar:
 
     def __init__(self):
         self.Graph = GraphNet()
-        self.Graph.add_nodes_from_csv_file('distances.csv', is_bidirectional=True)
+        self.Graph.add_edges_from_csv_file('distances.csv', is_bidirectional=True)
         self.DictEdges = self.Graph.edges_as_dict()
 
     def get_neighbors(self, v):
